@@ -2,6 +2,7 @@
 
 class VRDashOverlay final
 {
+public:
     vr::VROverlayHandle_t m_handle;
     vr::VROverlayHandle_t m_handleThumb;
     vr::Texture_t m_texture;

@@ -23,8 +23,12 @@ enum ConstantWidgetIndex : size_t
 const sf::Vector2f g_buttonSize(320.f, 64.f);
 const sf::Vector2u g_guiSize(512U, 512U);
 
+WidgetManager* widgetmanager = nullptr;
+
 WidgetManager::WidgetManager(Core *f_core)
 {
+    widgetmanager = this;
+
     m_core = f_core;
 
     // Init with empty fields
@@ -246,9 +250,24 @@ void WidgetManager::OnButtonRelease(size_t f_hand, uint32_t f_button)
     for(auto l_widget : m_widgets) l_widget->OnButtonRelease(f_hand, f_button);
 }
 
+void WidgetManager::GetHmdTransformOnDashOpen( glm::vec3 &f_pos, glm::quat &f_rot )
+{
+    f_pos = dashHmdPos;
+    f_rot = dashHmdRot;
+}
+
+void WidgetManager::UpdateDashHmdTransform()
+{
+    // save headset pos and rot
+    VRDevicesStates::GetDevicePosition(VRDeviceIndex::VDI_Hmd, dashHmdPos);
+    VRDevicesStates::GetDeviceRotation(VRDeviceIndex::VDI_Hmd, dashHmdRot);
+}
+
 void WidgetManager::OnDashboardOpen()
 {
     m_activeDashboard = true;
+
+    UpdateDashHmdTransform();
 
     // Update widgets
     for(auto l_iter : m_constantWidgets) l_iter.second->OnDashboardOpen();
@@ -315,16 +334,31 @@ void WidgetManager::OnGuiElementMouseClick(GuiElement *f_guiElement, unsigned ch
             } break;
             case GEI_Widgets_Keyboard:
             {
-                Widget *l_widget = new WidgetKeyboard();
-                if(l_widget->Create())
+                // check if widget exists first
+                WidgetKeyboard* keyboard = nullptr;
+                for ( auto& widget: m_widgets )
                 {
-                    if(m_activeDashboard) l_widget->OnDashboardOpen();
-                    m_widgets.push_back(l_widget);
+                    if ( keyboard = dynamic_cast<WidgetKeyboard*>(widget) )
+                        break;
+                }
+
+                if ( keyboard )
+                {
+                    if ( m_activeDashboard ) keyboard->OnDashboardOpen();
                 }
                 else
                 {
-                    l_widget->Destroy();
-                    delete l_widget;
+                    Widget *l_widget = new WidgetKeyboard();
+                    if ( l_widget->Create() )
+                    {
+                        if(m_activeDashboard) l_widget->OnDashboardOpen();
+                        m_widgets.push_back(l_widget);
+                    }
+                    else
+                    {
+                        l_widget->Destroy();
+                        delete l_widget;
+                    }
                 }
             } break;
             case GEI_Widgets_Remove:

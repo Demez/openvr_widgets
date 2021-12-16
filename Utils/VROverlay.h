@@ -3,11 +3,12 @@
 class Transformation;
 class VROverlay final
 {
+public:
     vr::VROverlayHandle_t m_handle;
     vr::Texture_t m_texture;
 
     Transformation *m_transform;
-public:
+
     VROverlay();
     ~VROverlay();
 

@@ -9,6 +9,7 @@ class VRDashOverlay;
 
 class WidgetManager final
 {
+public:
     enum GuiElementIndex : size_t
     {
         GEI_Widgets,
@@ -63,4 +64,16 @@ public:
     void OnButtonRelease(size_t f_hand, uint32_t f_button);
     void OnDashboardOpen();
     void OnDashboardClose();
+
+    //void GetDevicePosOnDashOpen( const size_t f_device, glm::vec3 &f_pos );
+    //void GetDeviceRotOnDashOpen( const size_t f_device, glm::quat &f_rot );
+
+    void UpdateDashHmdTransform();
+    void GetHmdTransformOnDashOpen( glm::vec3 &f_pos, glm::quat &f_rot );
+
+    glm::vec3 dashHmdPos;
+    glm::quat dashHmdRot;
 };
+
+// bruh
+extern WidgetManager* widgetmanager;

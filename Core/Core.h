@@ -36,4 +36,6 @@ public:
     void ForceHandSearch();
     void SendMessageToDeviceWithProperty(uint64_t f_value, const char *f_message);
     void RequestExit();
+
+    void RegisterApplication();
 };

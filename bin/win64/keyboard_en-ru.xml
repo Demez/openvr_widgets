@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<layout name="English - Русский">
+   <!--Row 1-->
+  <key text="Esc" code="27" transform="10 10 64 64"/>
+  <key text="F1" code="112" transform="150 10 64 64"/>
+  <key text="F2" code="113" transform="220 10 64 64"/>
+  <key text="F3" code="114" transform="290 10 64 64"/>
+  <key text="F4" code="115" transform="360 10 64 64"/>
+  <key text="F5" code="116" transform="466 10 64 64"/>
+  <key text="F6" code="117" transform="536 10 64 64"/>
+  <key text="F7" code="118" transform="606 10 64 64"/>
+  
+  <key text="F8" code="119" transform="676 10 64 64"/>
+  <key text="F9" code="120" transform="780 10 64 64"/>
+  <key text="F10" code="121" transform="850 10 64 64"/>
+  <key text="F11" code="122" transform="920 10 64 64"/>
+  <key text="F12" code="123" transform="990 10 64 64"/>
+  <key text="PrtScr" code="42" transform="1080 10 64 64"/>
+  <key text="ScrLck" code="145" transform="1150 10 64 64"/>
+  <key text="Pause" code="19" transform="1220 10 64 64"/>
+  <!--Row 2-->
+  <key text="~" modText="LShift|RShift `" code="192" transform="10 96 64 64"/>
+  <key text="1" modText="LShift|RShift !" code="49" transform="80 96 64 64"/>
+  <key text="2" modText="LShift|RShift @" code="50" transform="150 96 64 64"/>
+  <key text="3" modText="LShift|RShift #" code="51" transform="220 96 64 64"/>
+  <key text="4" modText="LShift|RShift $" code="52" transform="290 96 64 64"/>
+  <key text="5" modText="LShift|RShift %" code="53" transform="360 96 64 64"/>
+  <key text="6" modText="LShift|RShift ^" code="54" transform="430 96 64 64"/>
+  <key text="7" modText="LShift|RShift &" code="55" transform="500 96 64 64"/>
+  <key text="8" modText="LShift|RShift *" code="56" transform="570 96 64 64"/>
+  <key text="9" modText="LShift|RShift (" code="57" transform="640 96 64 64"/>
+  <key text="0" modText="LShift|RShift )" code="58" transform="710 96 64 64"/>
+  <key text="-" modText="LShift|RShift _" code="189" transform="780 96 64 64"/>
+  <key text="=" modText="LShift|RShift +" code="187" transform="850 96 64 64"/>
+  <key text="Backspace" code="8" transform="920 96 134 64"/>
+  <key text="Ins" code="45" transform="1080 96 64 64"/>
+  <key text="Home" code="36" transform="1150 96 64 64"/>
+  <key text="PGUP" code="33" transform="1220 96 64 64"/>
+  <!--Row 3-->
+  <key text="Tab" code="9" transform="10 166 94 64"/>
+  <key text="q" modText="LShift|RShift|Caps Q" code="81" transform="110 166 64 64"/>
+  <key text="w" modText="LShift|RShift|Caps W" code="87" transform="180 166 64 64"/>
+  <key text="e" modText="LShift|RShift|Caps E" code="69" transform="250 166 64 64"/>
+  <key text="r" modText="LShift|RShift|Caps R" code="82" transform="320 166 64 64"/>
+  <key text="t" modText="LShift|RShift|Caps T" code="84" transform="390 166 64 64"/>
+  <key text="y" modText="LShift|RShift|Caps Y" code="89" transform="460 166 64 64"/>
+  <key text="u" modText="LShift|RShift|Caps U" code="85" transform="530 166 64 64"/>
+  <key text="i" modText="LShift|RShift|Caps I" code="73" transform="600 166 64 64"/>
+  <key text="o" modText="LShift|RShift|Caps O" code="79" transform="670 166 64 64"/>
+  <key text="p" modText="LShift|RShift|Caps P" code="80" transform="740 166 64 64"/>
+  <key text="[" modText="LShift|RShift {" code="219" transform="810 166 64 64"/>
+  <key text="]" modText="LShift|RShift }" code="221" transform="880 166 64 64"/>
+  <key text="Enter" code="13" transform="974 166 80 134"/>
+  <key text="Del" code="46" transform="1080 166 64 64"/>
+  <key text="End" code="35" transform="1150 166 64 64"/>
+  <key text="PGDN" code="34" transform="1220 166 64 64"/>
+  <!--Row 4-->
+  <key text="Caps" mod="2" code="20" transform="10 236 110 64"/>
+  <key text="a" modText="LShift|RShift|Caps A" code="65" transform="130 236 64 64"/>
+  <key text="s" modText="LShift|RShift|Caps S" code="83" transform="200 236 64 64"/>
+  <key text="d" modText="LShift|RShift|Caps D" code="68" transform="270 236 64 64"/>
+  <key text="f" modText="LShift|RShift|Caps F" code="70" transform="340 236 64 64"/>
+  <key text="g" modText="LShift|RShift|Caps G" code="71" transform="410 236 64 64"/>
+  <key text="h" modText="LShift|RShift|Caps H" code="72" transform="480 236 64 64"/>
+  <key text="j" modText="LShift|RShift|Caps J" code="74" transform="550 236 64 64"/>
+  <key text="k" modText="LShift|RShift|Caps K" code="75" transform="620 236 64 64"/>
+  <key text="l" modText="LShift|RShift|Caps L" code="76" transform="690 236 64 64"/>
+  <key text=";" modText="LShift|RShift :" code="186" transform="760 236 64 64"/>
+  <key text="'" modText="LShift|RShift &quot" code="222" transform="830 236 64 64"/>  <!-- MAY CAUSE PARSE ISSUE? -->
+  <key text="#" code="223" transform="900 236 64 64"/>
+  <!--Row 5-->
+  <key text="LShift" mod="1" code="160" transform="10 306 80 64"/>
+  <key text="\" modText="LShift|RShift |" code="220" transform="100 306 64 64"/>
+  <key text="z" modText="LShift|RShift|Caps Z" code="90" transform="170 306 64 64"/>
+  <key text="x" modText="LShift|RShift|Caps X" code="88" transform="240 306 64 64"/>
+  <key text="c" modText="LShift|RShift|Caps C" code="67" transform="310 306 64 64"/>
+  <key text="v" modText="LShift|RShift|Caps V" code="86" transform="380 306 64 64"/>
+  <key text="b" modText="LShift|RShift|Caps B" code="66" transform="450 306 64 64"/>
+  <key text="n" modText="LShift|RShift|Caps N" code="78" transform="520 306 64 64"/>
+  <key text="m" modText="LShift|RShift|Caps M" code="77" transform="590 306 64 64"/>
+  <key text="," modText="LShift|RShift <" code="188" transform="660 306 64 64"/>
+  <key text="." modText="LShift|RShift >" code="190" transform="730 306 64 64"/>
+  <key text="/" modText="LShift|RShift ?" code="191" transform="800 306 64 64"/>
+  <key text="RShift" mod="1" code="161" transform="870 306 184 64"/>
+  <key text="Up" code="38" transform="1150 306 64 64"/>
+  <!--Row 6-->
+  <key text="LCtrl" mod="1" code="162" transform="10 376 80 64"/>
+  <key text="LWin" code="91" transform="100 376 80 64"/>
+  <key text="LAlt" mod="1" code="18" transform="190 376 80 64"/>
+  <key text="Space" code="32" transform="280 376 430 64"/>
+  <key text="RAlt" mod="1" code="18" transform="720 376 80 64"/>
+  <key text="RWin" code="92" transform="810 376 80 64"/>
+  <key text="RCtrl" mod="1" code="163" transform="974 376 80 64"/>
+  <key text="Left" code="37" transform="1080 376 64 64"/>
+  <key text="Down" code="40" transform="1150 376 64 64"/>
+  <key text="Right" code="39" transform="1220 376 64 64"/>
+</layout>

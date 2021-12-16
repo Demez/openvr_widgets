@@ -7,6 +7,13 @@
 #include "Core/VRDevicesStates.h"
 #include "Utils/Utils.h"
 
+#include "Widgets/WidgetKeyboard.h"
+
+// probably put in stdafx?
+#ifdef _WIN32
+#include <direct.h> // _getcwd
+#endif
+
 SFML_DEFINE_DISCRETE_GPU_PREFERENCE
 
 const unsigned long long g_powerUpdateInterval = 30000U;
@@ -120,6 +127,31 @@ bool Core::Initialize()
 #endif
             }
         }
+
+
+        // need to get the headset position before keyboard is made
+        DoPulse();
+
+        if ( m_widgetManager->m_activeDashboard )
+            m_widgetManager->UpdateDashHmdTransform();
+
+#if 1
+        Widget *l_widget = new WidgetKeyboard();
+        if ( l_widget->Create() )
+        {
+            if ( m_widgetManager->m_activeDashboard )
+                l_widget->OnDashboardOpen();
+
+            m_widgetManager->m_widgets.push_back(l_widget);
+        }
+        else
+        {
+            l_widget->Destroy();
+            delete l_widget;
+        }
+#endif
+
+        RegisterApplication();
     }
     return m_active;
 }
@@ -365,4 +397,26 @@ void Core::RequestExit()
     if(m_active) m_active = false;
 }
 
+const char* g_appName = "demez.openvr_widgets_fork";
+
+void Core::RegisterApplication()
+{
+    //Register application so it will be launched automagically next time
+    if (!vr::VRApplications()->IsApplicationInstalled( g_appName ))
+    {
+        //This is supposed to be just a simple crude application, so we'll make due with this for getting the application path (this likely won't work on unicode paths)
+        char* path = _getcwd(0, MAX_PATH);
+
+        std::string path_str(path);
+        path_str.append("\\manifest.vrmanifest");
+
+        vr::EVRApplicationError app_error;
+        app_error = vr::VRApplications()->AddApplicationManifest(path_str.c_str());
+
+        if (app_error == vr::VRApplicationError_None)
+        {
+            vr::VRApplications()->SetApplicationAutoLaunch( g_appName, true );
+        }
+    }
+}
 

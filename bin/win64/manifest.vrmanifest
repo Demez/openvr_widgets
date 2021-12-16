@@ -1,0 +1,16 @@
+{
+	"source" : "builtin",
+	"applications": [{
+		"app_key": "demez.openvr_widgets_fork",
+		"launch_type": "binary",
+		"binary_path_windows": "openvr_widgets.exe",
+		"is_dashboard_overlay": true,
+
+		"strings": {
+			"en_us": {
+				"name": "Demez OpenVR Widgets Fork",
+				"description": "Demez OpenVR Widgets Fork"
+			}
+		}
+	}]
+}
