@@ -1,3 +1,16 @@
+Demez Changes:
+
+- Keyboard spawns around where the steamvr keyboard is on dashboard open
+- Added Full Modifier Keys support
+- Removed useless numpad, can bring back if wanted though
+- Fixed broken 0 and PrintScreen keys
+- Opens on startup now
+- Added steamvr auto start support
+
+
+Original ReadMe:
+-----------------------------------------------------
+
 # OpenVR Widgets [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 Set of simple overlay widgets for usage in SteamVR environment.  
 Application supports Windows 7, 8, 8.1, 10 and Linux (in experimental stage).
