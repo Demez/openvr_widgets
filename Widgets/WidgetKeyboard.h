@@ -53,6 +53,7 @@ public:
     void OnGuiElementClick_Keys(GuiElement *f_guiElement, unsigned char f_button, unsigned char f_state);
     void UpdateKeys();
     void CheckToggleKeys();
+    void TriggerHapticFeedback( int device, unsigned short duration );
 
     void UpdateTransform();
 

@@ -144,6 +144,21 @@ void vec_remove(std::vector<T> &vec, T item)
     vec.erase(vec.begin() + vec_index(vec, item));
 }
 
+void ReplaceString( std::string& str, const std::string& from, const std::string& to )
+{
+    if (str == "")
+        return;
+
+    while (str.find(from) != std::string::npos)
+    {
+        size_t start_pos = str.find(from);
+        if(start_pos == std::string::npos)
+            return;
+
+        str.replace(start_pos, from.length(), to);
+    }
+}
+
 
 void WidgetKeyboard::UpdateTransform()
 {
@@ -244,9 +259,7 @@ bool WidgetKeyboard::Create()
                         pugi::xml_attribute l_attribMod = l_keyNode.attribute("mod");  // is modifier key?
 
                         // text for when certain modifiers are active
-                        //// format for lshift and A: modText="LShift A;RShift A"
                         // format for lshift or rshift and A: modText="LShift|RShift A"
-                        //// format for lshift or rshift and A: modText="160|161 A|65"
                         pugi::xml_attribute l_attribModText = l_keyNode.attribute("modText");  
 
                         if(l_attribText && l_attribCode && l_attribTransform)
@@ -254,7 +267,10 @@ bool WidgetKeyboard::Create()
                             KeyboardKey *l_keyboardKey = new KeyboardKey();
                             m_keys.push_back( l_keyboardKey );
 
-                            l_keyboardKey->m_text.assign(l_attribText.as_string("?"));
+                            std::string text = l_attribText.as_string("?");
+                            ReplaceString( text, "\\n", "\n" );
+
+                            l_keyboardKey->m_text.assign( text );
                             l_keyboardKey->m_code = l_attribCode.as_uint(0U);
 
                             if ( l_attribMod )
@@ -500,14 +516,14 @@ void WidgetKeyboard::OnGuiElementClick_Keys(GuiElement *f_guiElement, unsigned c
             return;
         }
 
+        std::vector<INPUT> inputVec;
+        std::vector<INPUT> inputVecRel;  // release inputs
+
         INPUT input;
-        INPUT inputArray[4];
         input.ki.dwExtraInfo = 0;
         input.ki.time = 0;
         input.type = INPUT_KEYBOARD;
 
-        bool hasMods = false;
-        // releases hold modifier keys?
         if ( key->m_modType == KeyModType::None )
         {
             for ( auto& modKey: m_modKeys )
@@ -515,34 +531,38 @@ void WidgetKeyboard::OnGuiElementClick_Keys(GuiElement *f_guiElement, unsigned c
                 if ( modKey->m_modType != KeyModType::Hold || !modKey->m_modActive )
                     continue;
 
-                hasMods = true;
-
                 input.ki.wScan = 0;
                 input.ki.wVk = modKey->m_code;
                 input.ki.dwFlags = 0;
-                inputArray[0] = input;
+                inputVec.push_back(input);
 
                 input.ki.wScan = 0;
                 input.ki.wVk = modKey->m_code;
                 input.ki.dwFlags = KEYEVENTF_KEYUP;
-                inputArray[3] = input;
-
-                // only one mod for now lol
-                break;
+                inputVecRel.push_back(input);
             }
         }
 
         input.ki.wScan = 0;
         input.ki.wVk = key->m_code;
         input.ki.dwFlags = 0;
-        inputArray[hasMods ? 1 : 0] = input;
+        inputVec.push_back(input);
 
         input.ki.wScan = 0;
         input.ki.wVk = key->m_code;
         input.ki.dwFlags = KEYEVENTF_KEYUP;
-        inputArray[hasMods ? 2 : 1] = input;
+        inputVecRel.push_back(input);
 
-        SendInput(hasMods ? 4U : 2U, inputArray, sizeof(INPUT));
+        // reverse inputVecRel
+        std::reverse( inputVecRel.begin(), inputVecRel.end() );
+
+        // concat release inputs onto the end of inputVec
+        inputVec.insert( inputVec.end(), inputVecRel.begin(), inputVecRel.end() );
+
+        SendInput(inputVec.size(), inputVec.data(), sizeof(INPUT));
+
+        // untested
+        // TriggerHapticFeedback( 1, 100 );
 
         UpdateKeys();
     }
@@ -632,6 +652,14 @@ void WidgetKeyboard::CheckToggleKeys()
                 UpdateKeys();
         }
     }
+}
+
+
+// should not be here but whatever
+void WidgetKeyboard::TriggerHapticFeedback( int device, unsigned short duration )
+{
+    // only using this temporarily as there is no action system yet
+    vr::VRSystem()->TriggerHapticPulse( device, vr::k_eControllerAxis_Trigger, duration );
 }
 
 

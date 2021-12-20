@@ -145,6 +145,7 @@
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>./;./vendor/glm;./vendor/openvr/headers;./vendor/pugixml/src;./vendor/sfml/include;./vendor/screen_capture_lite/include;./vendor/glew/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>false</GenerateDebugInformation>
