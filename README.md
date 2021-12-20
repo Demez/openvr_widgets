@@ -4,7 +4,7 @@ Demez Changes:
 - Added Full Modifier Keys support
 - Removed useless numpad, can bring back if wanted though
 - Fixed broken 0 and PrintScreen keys
-- Opens on startup now
+- Keyboard Opens on startup for now
 - Added steamvr auto start support
 
 
